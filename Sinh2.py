@@ -1089,23 +1089,23 @@ for xd in range(10000):
     ugen.append(uaku2)
 
 logo = """
-\033[1;31m██╗   ██╗███████╗███╗   ███╗ █████╗ ███╗   ██╗    
-\033[1;32m██║   ██║██╔════╝████╗ ████║██╔══██╗████╗  ██║    
-\033[1;33m██║   ██║███████╗██╔████╔██║███████║██╔██╗ ██║    
-\033[1;34m██║   ██║╚════██║██║╚██╔╝██║██╔══██║██║╚██╗██║    
-\033[1;35m╚██████╔╝███████║██║ ╚═╝ ██║██║  ██║██║ ╚████║    
- \033[1;36m╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝                                  
+      \033[1;31m███████╗██╗███╗   ██╗██╗  ██╗
+     \033[1;35m ██╔════╝██║████╗  ██║██║  ██║
+     \033[1;34m ███████╗██║██╔██╗ ██║███████║
+     \033[1;37m ╚════██║██║██║╚██╗██║██╔══██║
+     \033[1;36m ███████║██║██║ ╚████║██║  ██║
+     \033[1;33m ╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝                                   
 --------------------------------------------------
-[•] OWNER      : \x1b[38;5;208mM USMAN
-[•] GITHUB     : \x1b[38;5;208mM4STERMIND1 
-[•] TOOL TYPE  : \x1b[38;5;208mRANDOM\033[1;37m
-[•] STATUS     : \x1b[38;5;208mFREE\033[1;37m
+[!] OWNER      : \x1b[38;5;208mYan Sinh
+[?] WOKING     : \x1b[38;5;208mKhmer and Thai
+[+] TOOL TYPE  : \x1b[38;5;208mRANDOM\033[1;37m
+[+] STATUS     : \x1b[38;5;208mPAID\033[1;37m
 --------------------------------------------------
-[•] \033[1;37mVERSION    :\033[1;32m 2.7\033[1;37m
-[•]\033[1;31m FOR\033[1;36m HATERS \033[1;34mWAIT AND \033[1;37mSEE
-[•] Will Update Every 2 Days  
-[•] FRIEND ROMI
-[•] YOUR MIND IS YOUR  BEST  WEAPON
+[+] \033[1;37mVERSION    :\033[1;32m 0.1\033[1;37m
+[!]\033[1;31m FOR\033[1;36m HATERS \033[1;34mWAIT AND \033[1;37mSEE
+[+] Will Update Every 2 Days  
+[!] Tool Make By Your Best Friend Is Sinh
+[+] YOUR MIND IS YOUR  BEST  WEAPON
 --------------------------------------------------             
  """
 def lines():
@@ -1304,7 +1304,7 @@ def approval():
     id = "-".join(uuid)
 
     try:
-        httpCaht = requests.get('https://raw.githubusercontent.com/MARWAN-TECH404/SSG/main/AprOVl.txt').text
+        httpCaht = requests.get('https://github.com/sinhkhmer/trick/blob/main/trick.txt').text
         if id in httpCaht:
             print("\33[1;32mYOUR KEY IS APPROVED.")
             msg = str(os.geteuid())

